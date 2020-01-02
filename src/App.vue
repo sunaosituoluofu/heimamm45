@@ -1,8 +1,10 @@
 <template>
   <div >
-  我是app
+  我是
+  <router-view></router-view>
   
   </div>
+  
 </template>
 
 <script>
