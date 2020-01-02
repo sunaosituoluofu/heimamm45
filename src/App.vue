@@ -1,7 +1,9 @@
 <template>
-  <div >
-  我是
+  <div class="app-container" >
+  
   <router-view></router-view>
+
+    
   
   </div>
   
@@ -17,5 +19,11 @@ export default {
 </script>
 
 <style>
+ .app-container{
+  height: 100%;
+  width: 100%;
+  
+
+ }
 
 </style>
