@@ -12,20 +12,27 @@
 
       <el-form ref="form" label-width="0px" class="form-w">
         <el-form-item>
-          <el-input placeholder="请输入手机号" prefix-icon="el-icon-user" v-model="input1"></el-input>
+          <el-input placeholder="请输入手机号" prefix-icon="el-icon-user" v-model="phone"></el-input>
         </el-form-item>
 
         <el-form-item>
-          <el-input show-password placeholder="请输入密码" prefix-icon="el-icon-lock" v-model="input2"></el-input>
+          <el-input show-password placeholder="请输入密码" prefix-icon="el-icon-lock" v-model="password"></el-input>
         </el-form-item>
 
         <el-form-item>
           <el-row>
             <el-col :span="17">
-              <el-input placeholder="请输入验证码" v-model="input3" prefix-icon="el-icon-key"></el-input>
+              <el-input placeholder="请输入验证码" v-model="code" prefix-icon="el-icon-key"></el-input>
             </el-col>
             <el-col :span="7">
-              <img class="captcha" alt="1234" />
+              
+              <img
+                class="captcha"
+                ref="captcha"
+                @click="getCaptcha"
+                alt
+                src="http://127.0.0.1/heimamm/public/captcha?type=login"
+              />
             </el-col>
           </el-row>
         </el-form-item>
@@ -50,6 +57,8 @@
 
     <img src="../../assets/login_banner_ele.png" alt />
   </div>
+
+  <!-- 注册按钮 -->
 </template>
 
 <script >
@@ -57,11 +66,21 @@ export default {
   name: "login",
   data() {
     return {
-      input1: "",
-      input2: "",
-      input3: "",
+      phone: "",
+      password: "",
+      code: "",
       checked: false
     };
+  },
+
+  methods: {
+    // submitForm(formName){
+
+    // },
+    getCaptcha() {
+      // 时间戳
+      this.$refs.captcha.src = `http://127.0.0.1/heimamm/public/captcha?type=login&${Date.now()}`;
+    }
   }
 };
 </script>
@@ -151,7 +170,6 @@ export default {
       margin-left: 0;
       margin-bottom: 28px;
     }
-
   }
 }
 </style>
